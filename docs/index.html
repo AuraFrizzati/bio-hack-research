@@ -24,7 +24,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: var(--card-bg);
             padding: 30px;
@@ -42,39 +42,100 @@
 
         h2 {
             color: var(--secondary-color);
-            margin-top: 30px;
+            margin-top: 40px;
             border-bottom: 1px solid #eee;
             padding-bottom: 5px;
         }
 
-        .form-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            padding: 8px;
-            background-color: #fafafa;
+        /* Static Scale Box */
+        .scale-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px 20px;
+            margin-bottom: 30px;
             border-radius: 4px;
         }
-
-        .form-group label {
-            flex: 1;
-            font-weight: 500;
+        
+        .scale-box h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-size: 1.1em;
         }
 
-        .form-group select, .form-group input {
+        .scale-box ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            font-size: 0.95em;
+        }
+
+        .scale-box li span {
+            font-weight: bold;
+        }
+
+        /* Form Elements */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            padding: 12px;
+            background-color: #fafafa;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        .form-group > label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .options label {
+            background: #eef2f5;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border: 1px solid #dcdcdc;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .options label:hover {
+            background: #dfe6e9;
+        }
+
+        /* Number input for Cancer */
+        .cancer-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cancer-input-wrapper input {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 200px;
-            font-size: 14px;
+            width: 80px;
+            font-size: 16px;
         }
 
         .note {
             font-size: 0.85em;
             color: #666;
-            margin-top: -8px;
-            margin-bottom: 15px;
+            margin-top: 5px;
             display: block;
         }
 
@@ -89,7 +150,7 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 30px;
+            margin-top: 40px;
             transition: background-color 0.3s;
         }
 
@@ -97,48 +158,52 @@
             background-color: #2980b9;
         }
 
+        /* Results Display */
         #result-section {
             display: none;
             margin-top: 30px;
-            padding: 20px;
+            padding: 25px;
             border-radius: var(--border-radius);
             text-align: center;
         }
 
         .score-display {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+        }
+
+        .score-math {
+            font-size: 1.2em;
+            color: #444;
+            margin-bottom: 15px;
+            font-family: monospace;
+            background: rgba(255,255,255,0.5);
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-block;
         }
 
         .interpretation {
-            font-size: 1.5em;
+            font-size: 1.8em;
             font-weight: 600;
         }
 
-        .missing-data-note {
-            font-size: 0.9em;
-            margin-top: 15px;
-            color: #555;
-        }
-
         /* Result Colors */
-        .fit { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .well { background-color: #e2e3e5; color: #383d41; border: 1px solid #d6d8db; }
-        .managing { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
-        .vulnerable { background-color: #fdfdfe; color: #e67e22; border: 1px solid #f39c12; }
-        .mildly-frail { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        .moderately-frail { background-color: #f1b0b7; color: #721c24; border: 1px solid #e7828f; }
-        .severely-frail { background-color: #c82333; color: white; border: 1px solid #bd2130; }
+        .fit { background-color: #d4edda; color: #155724; border: 2px solid #c3e6cb; }
+        .well { background-color: #e2e3e5; color: #383d41; border: 2px solid #d6d8db; }
+        .managing { background-color: #fff3cd; color: #856404; border: 2px solid #ffeeba; }
+        .vulnerable { background-color: #fdfdfe; color: #e67e22; border: 2px solid #f39c12; }
+        .mildly-frail { background-color: #f8d7da; color: #721c24; border: 2px solid #f5c6cb; }
+        .moderately-frail { background-color: #f1b0b7; color: #721c24; border: 2px solid #e7828f; }
+        .severely-frail { background-color: #c82333; color: white; border: 2px solid #bd2130; }
 
         @media (max-width: 600px) {
-            .form-group {
+            .options {
                 flex-direction: column;
-                align-items: flex-start;
             }
-            .form-group select, .form-group input {
-                width: 100%;
-                margin-top: 8px;
+            .scale-box ul {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -147,7 +212,21 @@
 
 <div class="container">
     <h1>Frailty Index Calculator</h1>
-    <p>Please answer the following questions to calculate your functional aging and vulnerability score. If you do not know the answer to a question, select "Don't Know / Not Tested" and it will be excluded from your final calculation.</p>
+    
+    <div class="scale-box">
+        <h3>Interpretation Scale</h3>
+        <ul>
+            <li><span>Very Fit:</span> Score &lt; 0.1</li>
+            <li><span>Well:</span> 0.1 &le; Score &lt; 0.2</li>
+            <li><span>Managing:</span> 0.2 &le; Score &lt; 0.3</li>
+            <li><span>Vulnerable:</span> 0.3 &le; Score &lt; 0.4</li>
+            <li><span>Mildly Frail:</span> 0.4 &le; Score &lt; 0.5</li>
+            <li><span>Moderately Frail:</span> 0.5 &le; Score &lt; 0.6</li>
+            <li><span>Severely Frail:</span> Score &ge; 0.6</li>
+        </ul>
+    </div>
+
+    <p>Please answer the following questions to calculate your score. If you do not know an answer, leave it marked as "Unknown" and it will be safely excluded from the calculation.</p>
 
     <h2>Category A: Diseases</h2>
     <div id="category-a">
@@ -155,9 +234,11 @@
     
     <div class="form-group">
         <label for="cancer-input">Cancer (Distinct types)</label>
-        <input type="number" id="cancer-input" min="0" placeholder="Enter number of types (e.g., 0, 1, 2)">
+        <div class="cancer-input-wrapper">
+            <input type="number" id="cancer-input" min="0" placeholder="e.g., 0, 1, 2">
+        </div>
+        <span class="note">*Leave blank if Unknown. Enter 0 if you have never had cancer. Count 1 point for each distinct type.</span>
     </div>
-    <span class="note">*Leave blank if you don't know. Enter 0 if you have never had cancer. Count 1 point for each distinct type.</span>
 
     <h2>Category B: Functioning</h2>
     <p>Rate your level of difficulty with the following tasks without help or special equipment.</p>
@@ -169,12 +250,12 @@
     <div id="category-c">
         </div>
 
-    <button onclick="calculateScore()">Calculate Frailty Score</button>
+    <button onclick="calculateScore()">Calculate Final Score</button>
 
     <div id="result-section">
-        <div class="score-display">Score: <span id="score-val">0.00</span></div>
+        <div class="score-math" id="score-math">Total Deficits: 0 &nbsp;|&nbsp; Answered Questions: 0</div>
+        <div class="score-display"><span id="score-val">0.00</span></div>
         <div class="interpretation" id="score-interp">Interpretation</div>
-        <div class="missing-data-note" id="data-note"></div>
     </div>
 </div>
 
@@ -185,14 +266,14 @@
         "Angina", "Heart Attack", "Atrial Fibrillation", "Stroke", 
         "Emphysema", "Chronic Bronchitis", "COPD", "Liver Condition", 
         "Dementia", "Arthritis", "Osteoporosis", "Hearing Impairment"
-    ]; // Cancer is handled manually
+    ]; 
 
     const catB_functioning = [
         "Walking 1/4 mile", "Walking up 10 steps", "Stooping, crouching, or kneeling", 
         "Lifting or carrying 10 pounds", "Walking between rooms", "Standing up from an armless chair", 
         "Getting in or out of bed", "Holding utensils", "Standing for more than 30 minutes", 
         "Reaching overhead", "Remembering what you ate for dinner the night before", "Walking on an uneven surface without falling"
-    ];
+    ]; 
 
     const catC_labs = [
         "Triglyceride level of 150 mg/dL or more", "HDL cholesterol level less than 40 mg/dL", 
@@ -201,65 +282,66 @@
     ];
 
     // --- HTML Generation ---
-    function generateBinarySelect(idPrefix, label, cssClass) {
+    function generateBinaryRadios(idPrefix, label, cssClass, index) {
+        const name = `${idPrefix}_${index}`;
         return `
             <div class="form-group">
                 <label>${label}</label>
-                <select class="${cssClass}">
-                    <option value="unknown">Don't Know / Not Tested</option>
-                    <option value="0">No (0 pts)</option>
-                    <option value="1">Yes (1 pt)</option>
-                </select>
+                <div class="options">
+                    <label><input type="radio" name="${name}" class="${cssClass}" value="1"> Yes (1 pt)</label>
+                    <label><input type="radio" name="${name}" class="${cssClass}" value="0"> No (0 pts)</label>
+                    <label><input type="radio" name="${name}" class="${cssClass}" value="unknown" checked> Unknown</label>
+                </div>
             </div>
         `;
     }
 
-    function generateScaleSelect(label) {
+    function generateScaleRadios(label, index) {
+        const name = `catB_${index}`;
         return `
             <div class="form-group">
                 <label>${label}</label>
-                <select class="cat-b">
-                    <option value="unknown">Don't Know</option>
-                    <option value="0">None (0 pts)</option>
-                    <option value="0.5">Some (0.5 pts)</option>
-                    <option value="0.75">Much (0.75 pts)</option>
-                    <option value="1">Unable (1 pt)</option>
-                </select>
+                <div class="options">
+                    <label><input type="radio" name="${name}" class="cat-b" value="0"> None (0)</label>
+                    <label><input type="radio" name="${name}" class="cat-b" value="0.5"> Some (0.5)</label>
+                    <label><input type="radio" name="${name}" class="cat-b" value="0.75"> Much (0.75)</label>
+                    <label><input type="radio" name="${name}" class="cat-b" value="1"> Unable (1.0)</label>
+                    <label><input type="radio" name="${name}" class="cat-b" value="unknown" checked> Unknown</label>
+                </div>
             </div>
         `;
     }
 
-    document.getElementById('category-a').innerHTML = catA_diseases.map((d, i) => generateBinarySelect('a', d, 'cat-a')).join('');
-    document.getElementById('category-b').innerHTML = catB_functioning.map(d => generateScaleSelect(d)).join('');
-    document.getElementById('category-c').innerHTML = catC_labs.map((d, i) => generateBinarySelect('c', d, 'cat-c')).join('');
+    // Injecting the HTML
+    document.getElementById('category-a').innerHTML = catA_diseases.map((d, i) => generateBinaryRadios('catA', d, 'cat-a', i)).join('');
+    document.getElementById('category-b').innerHTML = catB_functioning.map((d, i) => generateScaleRadios(d, i)).join('');
+    document.getElementById('category-c').innerHTML = catC_labs.map((d, i) => generateBinaryRadios('catC', d, 'cat-c', i)).join('');
 
     // --- Calculation Logic ---
     function calculateScore() {
         let totalPoints = 0;
         let answeredQuestions = 0;
 
-        // Process standard Category A & C (Yes/No)
-        document.querySelectorAll('.cat-a, .cat-c').forEach(el => {
+        // Process standard Category A & C (Yes/No Radios)
+        document.querySelectorAll('input.cat-a:checked, input.cat-c:checked').forEach(el => {
             if (el.value !== "unknown") {
                 totalPoints += parseFloat(el.value);
                 answeredQuestions += 1;
             }
         });
 
-        // Process Cancer specifically
+        // Process Cancer specifically (Number Input)
         const cancerInput = document.getElementById('cancer-input').value;
         if (cancerInput !== "") {
             let cancerCount = parseInt(cancerInput);
             if(cancerCount < 0) cancerCount = 0;
             
-            totalPoints += cancerCount;
-            // If they have >0 cancers, each distinct type adds to the potential deficits denominator.
-            // If 0, it counts as 1 answered question with 0 points.
-            answeredQuestions += (cancerCount > 0 ? cancerCount : 1); 
+            totalPoints += cancerCount; // Adds 1 pt per distinct cancer
+            answeredQuestions += 1;     // Cancer counts as exactly 1 answered question
         }
 
-        // Process Category B (Scale)
-        document.querySelectorAll('.cat-b').forEach(el => {
+        // Process Category B (Scale Radios)
+        document.querySelectorAll('input.cat-b:checked').forEach(el => {
             if (el.value !== "unknown") {
                 totalPoints += parseFloat(el.value);
                 answeredQuestions += 1;
@@ -268,7 +350,7 @@
 
         // Validation
         if (answeredQuestions === 0) {
-            alert("Please answer at least one question to calculate a score.");
+            alert("Please provide an answer other than 'Unknown' for at least one question to calculate a score.");
             return;
         }
 
@@ -280,8 +362,8 @@
     function displayResult(score, points, answered) {
         const resultSection = document.getElementById('result-section');
         const scoreVal = document.getElementById('score-val');
+        const scoreMath = document.getElementById('score-math');
         const scoreInterp = document.getElementById('score-interp');
-        const dataNote = document.getElementById('data-note');
 
         // Reset classes
         resultSection.className = '';
@@ -305,11 +387,11 @@
             interpretation = "Severely Frail"; colorClass = "severely-frail";
         }
 
+        scoreMath.innerHTML = `<strong>${points}</strong> Deficits &nbsp;&divide;&nbsp; <strong>${answered}</strong> Questions Answered`;
         scoreVal.innerText = score.toFixed(3);
         scoreInterp.innerText = interpretation;
         resultSection.classList.add(colorClass);
         
-        dataNote.innerText = `Based on ${points} accumulated points across ${answered} answered parameters.`;
         resultSection.style.display = 'block';
         
         // Scroll to result
